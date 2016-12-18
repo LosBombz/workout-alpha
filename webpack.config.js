@@ -1,16 +1,29 @@
+var path = require('path');
+var webpack = require('webpack');
+var plugins = require('webpack-load-plugins')();
+
 module.exports = {
-    entry: './index.js',
-    module: {
-        loaders: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader'
-            }
+    devtool: 'eval-source-map',
+    entry: {
+        main: [
+            './src/index.js'
         ]
     },
     output: {
         filename: 'bundle.js',
-        path: './dist'
+        path: path.join(__dirname, 'dist'),
+        publicPath: '/dist/'
+    },
+    plugins: [
+
+    ],
+    module: {
+        loaders: [
+            {
+                test: /\.jsx?$/,
+                include: path.join(__dirname, 'src'),
+                loader: 'babel-loader'
+            }
+        ]
     }
 }
