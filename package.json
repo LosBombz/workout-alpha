@@ -32,6 +32,7 @@
     "webpack-load-plugins": "^0.1.2"
   },
   "dependencies": {
+    "firebase": "^3.6.4",
     "lodash": "^4.17.2",
     "react": "^15.4.1",
     "react-dom": "^15.4.1"
