@@ -7,7 +7,11 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>What up world</div>
+            <div>
+                <div>What up world</div>
+                <div>nah chill</div>
+            </div>
+
         );
     }
 }
