@@ -1,0 +1,22 @@
+{
+    "exercises": {
+        "pushups": {
+            "name": "Classic Ushups",
+            "exampleUrl": "path/to/examples/pushup.jpg",
+            "type": "anaerobic",
+            "favorite": true,
+            "default": true,
+            "stars": 4
+        },
+        "crunches": {
+            "name": "Classic Crunches",
+            "exampleUrl": "path/to/examples/crunches.jpg",
+            "type": "anaerobic",
+            "favorite": false,
+            "default": true,
+            "stars": 3
+        }
+    },
+    "workouts": {},
+    "programs": {}
+}
