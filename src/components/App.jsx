@@ -89,11 +89,13 @@ class App extends React.Component {
 
     render() {
         let authButton = this.state.authenticated ? <button onClick={this.logout.bind(this)}>Logout</button> : <button onClick={this.login.bind(this)}>Login with google</button>;
+        let currentUser = this.state.currentUser ? <div>logged in as:<h3>{this.state.currentUser.displayName}</h3></div> : <h3>Please log in to continue</h3>;
         return (
             <div className="contrainer">
                 <h1>Workout Alpha</h1>
-                <h2>Exercises</h2>
+                {currentUser}
                 {authButton}
+                <h2>Exercises</h2>
                 <ul>
                     {this.state.exercises}
                 </ul>
