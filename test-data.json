@@ -1,7 +1,7 @@
 {
     "exercises": {
         "pushups": {
-            "name": "Classic Ushups",
+            "name": "Classic Pushups",
             "exampleUrl": "path/to/examples/pushup.jpg",
             "type": "anaerobic",
             "favorite": true,
