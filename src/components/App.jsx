@@ -7,20 +7,6 @@ const app = firebase.initializeApp({apiKey: 'AIzaSyBADGH-KXqmKHxn6ZVJr3XcpV5MLYK
 const provider = new firebase.auth.GoogleAuthProvider();
 const database = firebase.database();
 
-console.log(app);
-
-function getExercises() {
-    let user = firebase.auth().currentUser;
-    console.log(user);
-    return firebase.database().ref('/exercises/').once('value').then(function(snapshot) {
-        let exercises = snapshot.val();
-        console.log(exercises);
-        // ...
-    });
-}
-
-var user;
-
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -32,29 +18,30 @@ class App extends React.Component {
             if (user) {
                 // User is signed in.
                 console.log(user.displayName, '| is still signed in');
-                user = firebase.auth().currentUser;
-                console.log(user);
-                return firebase.database().ref('/exercises/').once('value').then((snapshot)=> {
-                    let res = snapshot.val();
-                    _.forEach(res, (exercise, idx)=> {
-                        this.state.exercises.push(
-                            <li key={idx}>
-                                <h2>{exercise.name}</h2>
-                                <div>type: {exercise.type}</div>
-                            </li>
-                        );
-                    });
-                    console.log(this.state.exercises);
-
-                    this.setState({
-                        exercises: this.state.exercises
-                    });
-                    // ...
-                });
+                this.getExercises();
             } else {
                 // No user is signed in.
                 console.log('no user is signed in');
             }
+        });
+    }
+
+    getExercises() {
+        return firebase.database().ref('/exercises/').once('value').then((snapshot)=> {
+            let res = snapshot.val();
+            _.forEach(res, (exercise, idx)=> {
+                this.state.exercises.push(
+                    <li key={idx}>
+                        <h2>{exercise.name}</h2>
+                        <div>type: {exercise.type}</div>
+                    </li>
+                );
+            });
+            console.log(this.state.exercises);
+
+            this.setState({
+                exercises: this.state.exercises
+            });
         });
     }
 
