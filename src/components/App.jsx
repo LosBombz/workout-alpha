@@ -11,17 +11,28 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            exercises: []
+            exercises: [],
+            authenticated: false,
+            currentUser: null
         }
 
         firebase.auth().onAuthStateChanged((user)=> {
             if (user) {
                 // User is signed in.
                 console.log(user.displayName, '| is still signed in');
+                this.setState({
+                    authenticated: true,
+                    currentUser: user
+                });
                 this.getExercises();
             } else {
                 // No user is signed in.
                 console.log('no user is signed in');
+                this.setState({
+                    authenticated: false,
+                    currentUser: null,
+                    exercises: []
+                });
             }
         });
     }
@@ -77,12 +88,12 @@ class App extends React.Component {
     }
 
     render() {
+        let authButton = this.state.authenticated ? <button onClick={this.logout.bind(this)}>Logout</button> : <button onClick={this.login.bind(this)}>Login with google</button>;
         return (
-            <div>
-                <div>What up world</div>
-                <div>nah chill</div>
-                <button onClick={this.login.bind(this)}>Login with google</button>
-                <button>Logout</button>
+            <div className="contrainer">
+                <h1>Workout Alpha</h1>
+                <h2>Exercises</h2>
+                {authButton}
                 <ul>
                     {this.state.exercises}
                 </ul>
